@@ -95,7 +95,7 @@ class GPT(nn.Module):
         positions = self.position_embedding_table(positions_id)
         x = tokens + positions
 
-        if mask is not None:
+        if mask is None: # always create masked
             mask = generate_causal_mask(T, device=x.device)
 
         for block in self.blocks:
