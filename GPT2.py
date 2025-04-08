@@ -99,7 +99,7 @@ class GPT(nn.Module):
             mask = generate_causal_mask(T, device=x.device)
 
         for block in self.blocks:
-            x = block(x)
+            x = block(x, mask=mask)
 
         x = self.ln_f(x)
         logits = self.lm_head(x)
